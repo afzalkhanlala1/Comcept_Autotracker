@@ -1,0 +1,36 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ControlPanel.qml</file>
+        <file>TrackerView.qml</file>
+        <file>InputSource.qml</file>
+        <file>OSDView.qml</file>
+        <file>TrackerRects.qml</file>
+        <file>InputSourceListView.qml</file>
+        <file>ConsoleView.qml</file>
+        <file>ControlView.qml</file>
+        <file>DataView.qml</file>
+        <file>IconsView.qml</file>
+        <file>InfoView.qml</file>
+        <file>SettingsView.qml</file>
+        <file>MotionView.qml</file>
+        <file>TelemetryView.qml</file>
+        <file>TrackerDataView.qml</file>
+        <file>ScrollableChartView.qml</file>
+        <file>VelocityView.qml</file>
+        <file>GunnerConsole.qml</file>
+        <file>GunnerMonitor.qml</file>
+        <file>TrackingErrView.qml</file>
+        <file>TrackerInfoView.qml</file>
+        <file>FourWayButton.qml</file>
+        <file>IndicatorButton.qml</file>
+        <file>ToggleSwitch.qml</file>
+        <file>FillRectIndicator.qml</file>
+        <file>LedIndicator.qml</file>
+        <file>PIDTunerView.qml</file>
+        <file>PreProcessingView.qml</file>
+        <file>PIDTunerStab.qml</file>
+        <file>TouchJoystick.qml</file>
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>

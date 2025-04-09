@@ -1,0 +1,20 @@
+# Qt build directories
+build*/
+debug*/
+release*/
+
+# C++ object files and executables
+*.o
+*.obj
+*.exe
+*.out
+*.app
+
+# Python bytecode and cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Logs and temporary files
+*.log
+*.tmp

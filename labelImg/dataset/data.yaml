@@ -1,0 +1,5 @@
+train: /home/jetson/yolo11/dataset/images/train
+val: /home/jetson/yolo11/dataset/images/val
+
+nc: 2
+names: ['tank', 'car']

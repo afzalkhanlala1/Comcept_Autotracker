@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../images/crossHair-01.png</file>
+        <file>../images/gps.png</file>
+        <file>../images/green-crosshair.png</file>
+        <file>../images/input_icon.png</file>
+        <file>../images/lutRef_01.png</file>
+        <file>../images/lutRef_02.png</file>
+        <file>../images/lutRef_04.png</file>
+        <file>../images/lutRef_05.png</file>
+        <file>../images/lutRef_06.png</file>
+        <file>../images/lutRef_07.png</file>
+        <file>../images/more.png</file>
+        <file>../images/nextFrame_icon.png</file>
+        <file>../images/pause_icon.png</file>
+        <file>../images/play_icon.png</file>
+        <file>../images/preFrame_icon.png</file>
+        <file>../images/red-crosshair.png</file>
+        <file>../images/Settings-icon.png</file>
+        <file>../images/trackerCenter.png</file>
+        <file>../images/trackerCenter_02.png</file>
+        <file>../images/trackerCenter_03.png</file>
+        <file>../images/trackerCenter_04.png</file>
+        <file>../images/dir_arrow.png</file>
+        <file>../images/dir_arrow_down.png</file>
+        <file>../images/dir_arrow_left.png</file>
+        <file>../images/dir_arrow_right.png</file>
+        <file>../images/dir_arrow_up.png</file>
+        <file>../images/no-image-icon.png</file>
+        <file>../images/conn-blue.png</file>
+        <file>../images/conn-red.png</file>
+        <file>../images/console.png</file>
+        <file>../images/telemetry-icon.png</file>
+        <file>../images/centermarker-bold.png</file>
+        <file>../images/jotarea.png</file>
+    </qresource>
+</RCC>
