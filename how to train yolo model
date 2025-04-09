@@ -1,3 +1,10 @@
+git status
+git add .
+git commit -m "<brief description>"
+git push
+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
+
+
 cat /etc/nv_tegra_release
 Look for R36 (JetPack 6.x). You’ve confirmed JetPack 6.0, so it’s compatible with DeepStream 7.0.
 dpkg -l | grep deepstream
