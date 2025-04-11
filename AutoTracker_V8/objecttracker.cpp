@@ -107,28 +107,9 @@ void ObjectTracker::trackImageFeatures(TrackerFrame trackerFrame)
 
     if (trackerFrame.frame.format()== QImage::Format_RGB888) { enableTM = false; }
 
-    if(trackerFrame.useIS && !trackerFrame.stabImage.isNull())
-    {
-        if(!trackerFrame.stabImage.isNull())
-        {
-            frameCenter = trackerFrame.stabImage.rect().center();
-            imageSize = trackerFrame.stabImage.size();            emit trackFeatures(trackerFrame.stabImage, frame_dt);
-        }
-    }
-
-    else if(trackerFrame.useLutFrame && !trackerFrame.lutFrame.isNull())
-    {
-        frameCenter = trackerFrame.lutFrame.rect().center();
-        imageSize = trackerFrame.lutFrame.size();
-        emit trackFeatures(trackerFrame.lutFrame, frame_dt);
-    }
-
-    else if(!trackerFrame.frame.isNull())
-    {
-        frameCenter = trackerFrame.lutFrame.rect().center();
-        imageSize = trackerFrame.lutFrame.size();
-        emit trackFeatures(trackerFrame.frame, frame_dt);
-    }
+    frameCenter = trackerFrame.frame.rect().center(); // Use original frame for general center/size reference if needed elsewhere
+    imageSize = trackerFrame.frame.size();
+    emit trackFeatures(trackerFrame, frame_dt /*, trackerFrame.worldDisplacement */);
 }
 
 void ObjectTracker::trackerFinished(QRectF trackedRect, ObjectState objectState, bool success, int tracker_type) {

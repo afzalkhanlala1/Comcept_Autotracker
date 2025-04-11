@@ -36,14 +36,25 @@ void DaSiamRPNTracker::setROI(QRect rect)
     //cout << "============================ " << "roiRect: " << trackingRect.x() << ", " << trackingRect.y() << " | " << trackingRect.width() << " | " << trackingRect.height() << endl;
 }
 
-void DaSiamRPNTracker::track(QImage frame, double dt, QVector2D )
+void DaSiamRPNTracker::track(TrackerFrame trackerFrame, double dt, QVector2D /* worldDisplacement */ )
 {
     if(busy) { return; }
+    // --- Select the frame to process ---
+    QImage frameToProcess;
+    if (trackerFrame.useIS && !trackerFrame.stabImage.isNull()) {
+        frameToProcess = trackerFrame.stabImage;
+    } else if (trackerFrame.useLutFrame && !trackerFrame.lutFrame.isNull()) {
+        frameToProcess = trackerFrame.lutFrame;
+    } else {
+        frameToProcess = trackerFrame.frame;
+    }
 
+    if (frameToProcess.isNull()) { busy = false; return; }
+    // --- End Selection ---
     busy = true;
     pTimer.start();
-    frame.convertTo(QImage::QImage::Format_RGB888);
-    currMatFrame = cv::Mat(frame.height(), frame.width(), CV_8UC3, (void*)frame.constBits(), frame.bytesPerLine());
+    frameToProcess.convertTo(QImage::QImage::Format_RGB888);
+    currMatFrame = cv::Mat(frameToProcess.height(), frameToProcess.width(), CV_8UC3, (void*)frameToProcess.constBits(), frameToProcess.bytesPerLine());
 
     if(!trackerCreated || !enabled || currMatFrame.empty() || !initialized || !roiSet) { busy = false; return;}
     //    qDebug() << "t" << trackedRect.x << trackedRect.y << trackedRect.width << trackedRect.height ;

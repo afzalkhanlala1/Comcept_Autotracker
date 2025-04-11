@@ -52,11 +52,12 @@ void YoloClientTracker::setROI(QRect rect)
     roiSet = true;
 }
 
-void YoloClientTracker::track(QImage frame, double dt, QVector2D worldDisplacement)
+void YoloClientTracker::track(TrackerFrame trackerFrame, double dt, QVector2D worldDisplacement)
 {
-    if (frame.isNull()) {
-        qDebug() << "Tracker of YOLO starting";
-        return;
+    QImage originalFrame = trackerFrame.frame;
+    if (originalFrame.isNull()) {
+         qDebug() << "YOLO Tracker received null original frame.";
+         return;
     }
 
     // Increment the frame counter
@@ -74,18 +75,18 @@ void YoloClientTracker::track(QImage frame, double dt, QVector2D worldDisplaceme
 
     // Prepare and send the frame
     pTimer.start();
-    frame.convertTo(QImage::Format_RGB888);
+    originalFrame.convertTo(QImage::Format_RGB888);
 
     QByteArray imgArr;
     QBuffer buffer(&imgArr);
     buffer.open(QIODevice::WriteOnly);
-    frame.save(&buffer, "JPG", compressionQuality);
+    originalFrame.save(&buffer, "JPG", compressionQuality);
 
     QByteArray frame_data = sof;
 
     frame_data.append(QByteArray::number(imgArr.size())); frame_data.append(",");
-    frame_data.append(QByteArray::number(frame.width())); frame_data.append(",");
-    frame_data.append(QByteArray::number(frame.height())); frame_data.append(",");
+    frame_data.append(QByteArray::number(originalFrame.width())); frame_data.append(",");
+    frame_data.append(QByteArray::number(originalFrame.height())); frame_data.append(",");
 
     // Append ROI coordinates
     if (roiSet) {

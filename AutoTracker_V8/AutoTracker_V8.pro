@@ -30,7 +30,8 @@ SOURCES += \
         remotecontrol.cpp \
         systemstatsreport.cpp \
         templatematchtracker.cpp \
-    yoloclienttracker.cpp
+        yoloclienttracker.cpp
+
 
 RESOURCES += qml.qrc \
     images.qrc

@@ -216,13 +216,21 @@ void TemplateMatchTracker::updatePos(QRectF objectTrackedRect)
     emit tracked(rect2, objectState, trackerSuccessful, TRACKER_TYPE::TEMPLATE_MATCHER);
 }
 
-void TemplateMatchTracker::track(QImage frame, double dt, QVector2D _worldDisp)
+void TemplateMatchTracker::track(TrackerFrame trackerFrame, double dt, QVector2D _worldDisp)
 {
-    if(busy || frame.isNull()) { return; }
+    QImage frameToProcess;
+     if (trackerFrame.useIS && !trackerFrame.stabImage.isNull()) {
+        frameToProcess = trackerFrame.stabImage;
+    } else if (trackerFrame.useLutFrame && !trackerFrame.lutFrame.isNull()) {
+        frameToProcess = trackerFrame.lutFrame;
+    } else {
+        frameToProcess = trackerFrame.frame;
+    }
+    if(busy || frameToProcess.isNull()) { return; }
 
     busy = true;
     pTimer.start();
-    curr_frame = frame;
+    curr_frame = frameToProcess; // Use the selected frame
     if(curr_frame.format() != QImage::Format_Grayscale8) { curr_frame.convertTo(QImage::Format_Grayscale8); }
     if(curr_frame.isNull() || !trackerCreated || !enabled || !initialized || !roiSet) { busy = false; return;}
     frame_dt = dt;
@@ -247,10 +255,10 @@ void TemplateMatchTracker::track(QImage frame, double dt, QVector2D _worldDisp)
     //trackingRect = QRectF((tmRect.topLeft()*tm_gain) + (contourRect.topLeft()*ct_gain), (tmRect.bottomRight()*tm_gain) + (contourRect.bottomRight()*ct_gain));
     trackingRect = tmRect;
     if(trackingRect.x() < 0) { trackingRect.translate(-trackingRect.x(), 0); }
-    else if(trackingRect.right() > frame.width() ) { trackingRect.translate(frame.width() - trackingRect.right(), 0); }
+    else if(trackingRect.right() > curr_frame.width() ) { trackingRect.translate(curr_frame.width() - trackingRect.right(), 0); }
 
     if(trackingRect.y() < 0) { trackingRect.translate(0, -trackingRect.y()); }
-    else if(trackingRect.bottom() > frame.height()) { trackingRect.translate(0, frame.height() - trackingRect.bottom()); }
+    else if(trackingRect.bottom() > curr_frame.height()) { trackingRect.translate(0, curr_frame.height() - trackingRect.bottom()); }
 
     //trackingRect = opRect;
     trackingRectDisp = QVector2D(trackingRect.center() - last_trackingRect.center());

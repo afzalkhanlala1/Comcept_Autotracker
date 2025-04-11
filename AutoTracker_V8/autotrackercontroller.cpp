@@ -300,7 +300,7 @@ void AutoTrackerController::captureDeviceInitCompleted()
     // emit cameraDev(selectedCamera);
 
     // VIDEO INPUT (currently active)
-    devices.append("/home/jetson/Documents/AutoTracker/Tank-Videos/batch_1/4.mkv"); // Updated for Jetson path
+    devices.append("/home/jetson/Documents/AutoTracker/Tank-Videos/batch_1/6.mkv");
     captureDevice->deviceConfig.device_paths = devices;
     captureDevice->deviceConfig.colorSpace << GRAY8B_CS;
     captureDevice->deviceConfig.frameSize << QSize(1280, 720);

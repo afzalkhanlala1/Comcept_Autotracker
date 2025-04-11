@@ -159,7 +159,7 @@ public slots:
     void init();
     void setROI(QRect rect);
     void updatePos(QRectF objectTrackedRect);
-    void track(QImage frame, double dt, QVector2D _worldDisplacement);
+    void track(TrackerFrame trackerFrame, double dt, QVector2D _worldDisplacement);
     void setParam(QStringList params);
 
 signals:

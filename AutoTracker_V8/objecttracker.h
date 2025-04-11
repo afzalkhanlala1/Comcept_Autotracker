@@ -33,8 +33,8 @@ public:
     explicit ObjectTracker(QObject *parent = nullptr);
     ~ObjectTracker();
 
-    bool enableDaSiamRPN = true;
-    bool enableTM = true;
+    bool enableDaSiamRPN = false;
+    bool enableTM = false;
     bool enableYOLOClient = true;
     bool validRange = false;
 
@@ -213,7 +213,7 @@ signals:
     void setTrackersROI(QRect rect);
     void markedRoiRect(QRect rect);
     void autoLockTarget(QImage frame, QRectF roi);
-    void trackFeatures(QImage frame, double dt, QVector2D worldDisplacement = QVector2D());
+    void trackFeatures(TrackerFrame trackerFrame, double dt, QVector2D worldDisplacement = QVector2D());
     void imageTracked(QVector<QRectF> trackingRects, int index);
     void processOFVel(OPResult _opResult);
     void processOFImage(QImage image, double _dt);
