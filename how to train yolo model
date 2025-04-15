@@ -1,7 +1,8 @@
-git status
 git add .
+git status
 git commit -m "<brief description>"
 git push
+afzalkhanlala1
 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
 
 
